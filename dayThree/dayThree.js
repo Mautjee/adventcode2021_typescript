@@ -1,11 +1,23 @@
 "use strict";
 exports.__esModule = true;
 var fs = require("fs");
+
+////////////////////////////////////////////////////////////////
+/*
+    Getting the data from the file
+*/
+////////////////////////////////////////////////////////////////
 function getData(localFilePath) {
     var data = fs.readFileSync(localFilePath).toString('utf-8');
     var textByLine = data.split("\n");
     return textByLine;
 }
+////////////////////////////////////////////////////////////////
+/*
+    Part one of day 3
+*/
+////////////////////////////////////////////////////////////////
+
 function partOne(data) {
     var middleNumber = data.length / 2;
     var amountOfOnes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -31,33 +43,66 @@ function partOne(data) {
     });
     return parseInt(gamma, 2) * parseInt(epsilon, 2);
 }
-
+////////////////////////////////////////////////////////////////
+/*
+    Part two of day 3
+*/
+////////////////////////////////////////////////////////////////
 function partTwo(data) {
 
     var pos = data[0].length;
-
     var numberList = [];
+
     data.forEach(function (line) {
         var l = line.split("");
         numberList.push(l);
     });
 
+    var lifeS = { oxygen: numberList, co2: numberList };
+
     for (var index = 0; index < pos; index++) {
-        if (checkNumber(numberList, index)) {
-            numberList = createNewList(numberList, true);
+        if (lifeS.oxygen.length != 1) {
+            lifeS.oxygen = narrow(lifeS.oxygen, index, true);
         }
-        else {
-            numberList = createNewList(numberList, false);
+        if (lifeS.co2.length != 1) {
+            lifeS.co2 = narrow(lifeS.co2, index, false);
         }
     }
 
-    return 0;
+    return parseInt(getFinalNumber(lifeS.co2), 2) * parseInt(getFinalNumber(lifeS.oxygen), 2);
 }
 
+// Getting the numbers from the list and creating a binary number
+function getFinalNumber(list) {
+    var number = "";
+    list.forEach(function (line) {
+        number = line.toString();
+    });
+    return number.replace(/,/g, '');
+}
+// narrow down the list with the right data
+function narrow(data, index, bigger) {
+    var list = data;
+    if (bigger && checkNumber(list, index)) {
+        list = createNewList(list, true, index);
+    }
+    else if (bigger && !checkNumber(list, index)) {
+        list = createNewList(list, false, index);
+    }
+    else if (!bigger && checkNumber(list, index)) {
+        list = createNewList(list, false, index);
+    }
+    else if (!bigger && !checkNumber(list, index)) {
+        list = createNewList(list, true, index);
+    }
+    return list;
+}
+//Checking which number is present the most
 function checkNumber(data, counter) {
 
     var amountOfOnes = 0;
     var middleNumber = data.length / 2;
+
     data.forEach(function (i) {
         if (i[counter] == "1") {
             amountOfOnes += 1;
@@ -65,19 +110,23 @@ function checkNumber(data, counter) {
     });
     return amountOfOnes >= middleNumber;
 }
-function createNewList(data, isOne) : string[]{
 
-    let newList = [];
-    if (isOne) {
-        newList = data.filter(function (i) { return i[0] == "1"; });
+// Creating a new list of the correct numbers
+function createNewList(data, wantBigger, counter) {
+
+    var newList = [];
+
+    if (wantBigger) {
+        newList = data.filter(function (i) { return i[counter] == "1"; });
     }
     else {
-        newList = data.filter(function (i) { return i[0] == "0"; });
+        newList = data.filter(function (i) { return i[counter] == "0"; });
     }
+
     return newList;
 }
 
-
 var data = getData("data.txt");
+
 console.log("Part one answer = " + partOne(data));
 console.log("Part two answer = " + partTwo(data));

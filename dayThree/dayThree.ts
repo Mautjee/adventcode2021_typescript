@@ -1,12 +1,22 @@
 import { Console } from 'console';
 import * as fs from 'fs';
 
+////////////////////////////////////////////////////////////////
+/*
+    Getting the data from the file
+*/
+////////////////////////////////////////////////////////////////
 
 function getData(localFilePath: string): string[]{
 	let data = fs.readFileSync(localFilePath).toString('utf-8'); 
 	let textByLine = data.split("\n");
 	return textByLine;
 }
+////////////////////////////////////////////////////////////////
+/*
+    Part one of day 3
+*/
+////////////////////////////////////////////////////////////////
 
 function partOne(data : string[]) : number {
 	
@@ -45,7 +55,11 @@ interface lifeSupport{
 	oxygen: string[][],
 	co2:string[][],
 }
-
+////////////////////////////////////////////////////////////////
+/*
+    Part two of day 3
+*/
+////////////////////////////////////////////////////////////////
 function partTwo(data:string[]):number {
 
 	let pos:number = data[0].length;
@@ -73,7 +87,7 @@ function partTwo(data:string[]):number {
 
 	return parseInt(getFinalNumber(lifeS.co2), 2) * parseInt(getFinalNumber(lifeS.oxygen), 2);
 }
-
+// Getting the numbers from the list and creating a binary number
 function getFinalNumber(list: string[][]):string{
 	let number : string = ""
 	list.forEach(line =>{
@@ -82,25 +96,29 @@ function getFinalNumber(list: string[][]):string{
 
 	return number.replace(/,/g,'') ;
 }
+
+// narrow down the list with the right data
 function narrow(data:string[][], index:number, bigger:boolean): string[][]{
-		let list:string[][] = data; 
-		if (bigger && checkNumber(list,index)){
-				
-			list = createNewList(list, true,index);
+	let list:string[][] = data; 
+	if (bigger && checkNumber(list,index)){
 			
-		}else if (bigger && !checkNumber(list,index)){
+		list = createNewList(list, true,index);
+		
+	} else if (bigger && !checkNumber(list,index)){
 
-			list = createNewList(list, false,index);
+		list = createNewList(list, false,index);
 
-		}else if (!bigger && checkNumber(list,index)){
+	} else if (!bigger && checkNumber(list,index)){
 
-			list = createNewList(list,false,index);
+		list = createNewList(list,false,index);
 
-		}else if (!bigger && !checkNumber(list,index)){
-			list = createNewList(list,true,index);
-		}
-		return list;	
+	} else if (!bigger && !checkNumber(list,index)){
+
+		list = createNewList(list,true,index);
 	}
+	return list;	
+}
+//Checking which number is present the most
 function checkNumber(data:string[][],counter:number):boolean {
 	let amountOfOnes : number = 0;
 	let middleNumber : number = data.length /2;
@@ -113,7 +131,7 @@ function checkNumber(data:string[][],counter:number):boolean {
 	return amountOfOnes >= middleNumber
 }
 
-
+// Creating a new list of the correct numbers
 function createNewList(data:string[][],wantBigger:boolean, counter:number) : string[][]{
 	let newList : string[][] = [];
 	

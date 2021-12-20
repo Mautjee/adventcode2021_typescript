@@ -1,7 +1,6 @@
 "use strict";
 exports.__esModule = true;
 var fs = require("fs");
-
 ////////////////////////////////////////////////////////////////
 /*
     Getting the data from the file
@@ -17,7 +16,6 @@ function getData(localFilePath) {
     Part one of day 3
 */
 ////////////////////////////////////////////////////////////////
-
 function partOne(data) {
     var middleNumber = data.length / 2;
     var amountOfOnes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -49,17 +47,13 @@ function partOne(data) {
 */
 ////////////////////////////////////////////////////////////////
 function partTwo(data) {
-
     var pos = data[0].length;
     var numberList = [];
-
     data.forEach(function (line) {
         var l = line.split("");
         numberList.push(l);
     });
-
     var lifeS = { oxygen: numberList, co2: numberList };
-
     for (var index = 0; index < pos; index++) {
         if (lifeS.oxygen.length != 1) {
             lifeS.oxygen = narrow(lifeS.oxygen, index, true);
@@ -68,10 +62,8 @@ function partTwo(data) {
             lifeS.co2 = narrow(lifeS.co2, index, false);
         }
     }
-
     return parseInt(getFinalNumber(lifeS.co2), 2) * parseInt(getFinalNumber(lifeS.oxygen), 2);
 }
-
 // Getting the numbers from the list and creating a binary number
 function getFinalNumber(list) {
     var number = "";
@@ -99,10 +91,8 @@ function narrow(data, index, bigger) {
 }
 //Checking which number is present the most
 function checkNumber(data, counter) {
-
     var amountOfOnes = 0;
     var middleNumber = data.length / 2;
-
     data.forEach(function (i) {
         if (i[counter] == "1") {
             amountOfOnes += 1;
@@ -110,23 +100,17 @@ function checkNumber(data, counter) {
     });
     return amountOfOnes >= middleNumber;
 }
-
 // Creating a new list of the correct numbers
 function createNewList(data, wantBigger, counter) {
-
     var newList = [];
-
     if (wantBigger) {
         newList = data.filter(function (i) { return i[counter] == "1"; });
     }
     else {
         newList = data.filter(function (i) { return i[counter] == "0"; });
     }
-
     return newList;
 }
-
 var data = getData("data.txt");
-
 console.log("Part one answer = " + partOne(data));
 console.log("Part two answer = " + partTwo(data));

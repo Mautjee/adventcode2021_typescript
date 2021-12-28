@@ -1,4 +1,3 @@
-import { Console } from 'console';
 import * as fs from 'fs';
 
 ////////////////////////////////////////////////////////////////
@@ -12,6 +11,7 @@ function getData(localFilePath: string): string[]{
 	let textByLine = data.split("\n");
 	return textByLine;
 }
+
 ////////////////////////////////////////////////////////////////
 /*
     Part one of day 3

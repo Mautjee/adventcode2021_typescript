@@ -1,0 +1,17 @@
+{
+  "name": "dayfour",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/main.ts",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^27.4.5"
+  }
+}

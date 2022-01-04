@@ -36,4 +36,4 @@ interface Game {
 	sheets:Sheet[]
 }
 
-export {Row, Sheet, Game}
+export {Row, Sheet, Game};

@@ -1,0 +1,19 @@
+{
+  "name": "daysix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "tsc && node dist/main.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "jarn": "^0.0.1",
+    "ts-jest": "^27.1.2",
+    "typescript": "^4.5.4"
+  }
+}

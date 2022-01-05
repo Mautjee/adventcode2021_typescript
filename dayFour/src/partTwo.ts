@@ -15,19 +15,5 @@ export function partTwo(data: Game): number {
 		}
 	})
 
-	// // Loop though all the avalible sheets
-	// for (let sheetNumber = 0; sheetNumber < data.sheets.length; sheetNumber++) {
-
-	// 	//Check sheet againts the input numbers
-	// 	let newRound = checkSheet(data.sheets[sheetNumber], data.input);
-
-	// 	//compair old sheet with new sheet
-	// 	if (newRound.finalInputNumber > bestSheet.finalInputNumber) {
-
-	// 		bestSheet = newRound;
-	// 	};
-
-	// }
-
 	return worstSheet.unmarktNumnerTotal * worstSheet.sheetScore;
 }

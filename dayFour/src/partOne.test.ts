@@ -10,6 +10,8 @@ test("Part one full test", () => {
   const actual = partOne(data);
   expect(actual).toBe(4512);
 });
+
+
 test("Part one check sheet 1", () =>{
   const data = getData("dataTest.txt");
 

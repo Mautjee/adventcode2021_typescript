@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"module":"CommonJS",
+		"target": "esnext",
+		"rootDir": "./src",
+		"outDir": "./dist",
+		"sourceMap": true,
+		"moduleResolution": "node"
+	}
+      }

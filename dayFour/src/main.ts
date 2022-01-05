@@ -49,7 +49,7 @@ interface Game {
 
 ////////////////////////////////////////////////////////////////
 /*
-    Models
+    Get data
 */
 ////////////////////////////////////////////////////////////////
 
@@ -65,10 +65,6 @@ export function getData(localFilePath: string): Game {
 	let input: string[] = textByLine.splice(0, 2)[0].split(",");
 
 	let sheets: Sheet[] = getSheetsFromData(textByLine);
-
-
-
-	console.log("list s = ")
 
 	return {
 		input: input,
@@ -143,19 +139,26 @@ export function partOne(data: Game): number {
 	//Define best sheet
 	let bestSheet: Result = { unmarktNumnerTotal: 0, finalInputNumber: 1000, sheetScore: 0 };
 
-	// Loop though all the avalible sheets
-	for (let sheetNumber = 0; sheetNumber < data.sheets.length; sheetNumber++) {
+	data.sheets.forEach(s =>{
+		let newRound = checkSheet(s, data.input);
+		
+		if(bestSheet.finalInputNumber > newRound.finalInputNumber){
+			bestSheet = newRound
+		}
+	})
+	// // Loop though all the avalible sheets
+	// for (let sheetNumber = 0; sheetNumber < data.sheets.length; sheetNumber++) {
 
-		//Check sheet againts the input numbers
-		let newRound = checkSheet(data.sheets[sheetNumber], data.input);
+	// 	//Check sheet againts the input numbers
+	// 	let newRound = checkSheet(data.sheets[sheetNumber], data.input);
 
-		//compair old sheet with new sheet
-		if (newRound.finalInputNumber < bestSheet.finalInputNumber) {
+	// 	//compair old sheet with new sheet
+	// 	if (newRound.finalInputNumber < bestSheet.finalInputNumber) {
 
-			bestSheet = newRound;
-		};
+	// 		bestSheet = newRound;
+	// 	};
 
-	}
+	// }
 
 
 	return bestSheet.unmarktNumnerTotal * bestSheet.sheetScore;
@@ -204,7 +207,7 @@ export function checkSheet(sheet: Sheet, input: string[]): Result {
 		}
 	}
 
-
+	console.log(finalInputNumber)
 	return {
 		unmarktNumnerTotal: calculateUnmarkedSheet(sheetNumbers),
 		finalInputNumber: finalInputNumber,
@@ -217,13 +220,49 @@ function calculateUnmarkedSheet(sheetNumbers: string[],): number {
 	let count: number = 0;
 
 	sheetNumbers.forEach(item => {
-		count = count + parseInt(item);
+		if(item != ''){
+			count = count + parseInt(item);
+		}
 	})
-
 	return count;
 }
 
+////////////////////////////////////////////////////////////////
+/*
+   day 4 part two
+*/
+////////////////////////////////////////////////////////////////
 
-let data = getData("data.txt");
+function partTwo(data: Game): number { 
 
-console.log("answer part 1 = " + partOne(data));
+	//Define worst sheet
+	let worstSheet: Result = { unmarktNumnerTotal: 0, finalInputNumber: 0, sheetScore: 0 };
+
+	data.sheets.forEach(s =>{
+		let newRound = checkSheet(s, data.input);
+		
+		if(worstSheet.finalInputNumber <= newRound.finalInputNumber){
+			worstSheet = newRound
+		}
+	})
+
+	// // Loop though all the avalible sheets
+	// for (let sheetNumber = 0; sheetNumber < data.sheets.length; sheetNumber++) {
+
+	// 	//Check sheet againts the input numbers
+	// 	let newRound = checkSheet(data.sheets[sheetNumber], data.input);
+
+	// 	//compair old sheet with new sheet
+	// 	if (newRound.finalInputNumber > bestSheet.finalInputNumber) {
+
+	// 		bestSheet = newRound;
+	// 	};
+
+	// }
+
+	return worstSheet.unmarktNumnerTotal * worstSheet.sheetScore;
+}
+
+
+console.log("answer part 1 = " + partOne(getData("data.txt")));
+console.log("answer part 2 = " + partTwo(getData("data.txt")));

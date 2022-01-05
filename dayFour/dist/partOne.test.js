@@ -11,9 +11,10 @@ test("Part one check sheet 1", () => {
     const result = {
         unmarktNumnerTotal: 137,
         finalInputNumber: 13,
-        sheetScore: 16
+        sheetScore: 16,
     };
     const actual = checkSheet(sheetToCheck, data.input);
+    console.log(actual);
     expect(actual).toBe(result);
 });
 test("Part one check sheet 3", () => {

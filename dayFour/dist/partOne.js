@@ -1,23 +1,17 @@
-import { Sheet } from './Models';
-export function partOne(data) {
-    let BestSheet = new Sheet();
-    let lowestNumber = 0;
-    // Loop though all the avalible sheets
-    for (let i = 0; i < data.sheets.length; i++) {
-        //
-        checkSheet(data.sheets[i], data.input);
-    }
-    return 990000;
-}
-function checkSheet(sheet, input) {
-    const numberToCheck = sheet.horizontal.concat(sheet.vertical);
-    numberToCheck.forEach(row => {
-        let find = row.listNumber.find(elem => elem == input[1]);
-        let findq = null;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.partOne = void 0;
+const logic_1 = require("./logic");
+function partOne(data) {
+    //Define best sheet
+    let bestSheet = { unmarktNumnerTotal: 0, finalInputNumber: 1000, sheetScore: 0 };
+    data.sheets.forEach(s => {
+        let newRound = (0, logic_1.checkSheet)(s, data.input);
+        if (bestSheet.finalInputNumber > newRound.finalInputNumber) {
+            bestSheet = newRound;
+        }
     });
-    return [, 0];
+    return bestSheet.unmarktNumnerTotal * bestSheet.sheetScore;
 }
-export function sum(a, b) {
-    return a + b;
-}
+exports.partOne = partOne;
 //# sourceMappingURL=partOne.js.map

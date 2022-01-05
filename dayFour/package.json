@@ -2,16 +2,18 @@
   "name": "dayfour",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/main.ts",
-  "directories": {
-    "test": "tests"
-  },
+  "main": "dist/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc && node dist/main.js",
+    "test": "jest"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "jest": "^27.4.5"
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "jarn": "^0.0.1",
+    "ts-jest": "^27.1.2",
+    "typescript": "^4.5.4"
   }
 }

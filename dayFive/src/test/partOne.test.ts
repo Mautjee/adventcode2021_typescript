@@ -1,4 +1,4 @@
-import {Point,Line} from '../models';
+import {Point,Line} from '../models/models';
 import {partOne, removeDiagonalLines} from '../partOne';
 import {getData} from '../getData';
 

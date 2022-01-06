@@ -1,6 +1,7 @@
-import {Point} from './models';
+import { Point } from './models/models';
 
 export function doesCollide(points: Point[]): boolean {
+
 	let d1 = direction(points[2], points[3], points[0])
 	let d2 = direction(points[2], points[3], points[1])
 	let d3 = direction(points[0], points[1], points[2])
@@ -28,13 +29,7 @@ function onSegment(P1: Point, P2: Point, P3: Point): boolean {
 		return false;
 	}
 }
-function direction(P1: Point, P2: Point, P3: Point): number {
-	let np1 = new Point((P1.x - P3.x), (P1.y - P2.y));
-	let mp2 = new Point((P2.x - P1.x),(P2.y - P1.y));
-	
-	return np1.x * mp2.y - mp2.x * np1.y
-}
 
-function direction2(P1: Point, P2: Point, P3: Point): number {
-	return ((P1.x - P3.x) - (P1.y - P2.y)) * ((P2.x - P1.x) - (P2.y - P1.y));
+export function direction(P1: Point, P2: Point, P3: Point): number {
+	return ((P2.x - P1.x)*(P3.y - P1.y)) - ((P3.x - P1.x)*(P2.y - P1.y));
 }

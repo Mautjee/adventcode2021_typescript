@@ -1,4 +1,4 @@
-import {Point,Line} from '../models';
+import {Point,Line} from '../models/models';
 import { getData } from '../getData';
 
 test('Test read Data from file', ()=>{

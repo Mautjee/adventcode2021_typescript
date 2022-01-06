@@ -1,4 +1,4 @@
-import { Point } from './models/models';
+import { Point } from './models/Point';
 
 export function doesCollide(points: Point[]): boolean {
 

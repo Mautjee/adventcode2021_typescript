@@ -1,5 +1,6 @@
 import{removeDiagonalLines} from '../partOne';
-import {Point,Line} from '../models/models';
+import {Line} from '../models/Line';
+import {Point} from '../models/Point';
 import {getData} from '../getData';
 
 test('Part one romove diagonal lines', ()=>{

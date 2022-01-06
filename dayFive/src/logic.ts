@@ -1,5 +1,6 @@
-import { Line, Point } from './models/models';
-import { direction, doesCollide } from './collide';
+import {Line} from './models/Line';
+import {Point} from './models/Point';
+import { doesCollide } from './collide';
 
 export function countCollitions(data: Line[]): number {
 
@@ -34,7 +35,7 @@ export function countCollitions(data: Line[]): number {
 					})
 				};
 			}
-			//lineToCheck.slice(lineToCheck.indexOf(line),1);
+			
 		})
 		lineToCheck2  = lineToCheck2.slice(1)
 		continue;		

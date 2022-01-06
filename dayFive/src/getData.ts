@@ -1,4 +1,5 @@
-import { Point, Line } from './models/models';
+import {Line} from './models/Line';
+import {Point} from './models/Point';
 import * as fs from 'fs';
 
 export function getData(localFilePath: string): Line[] {

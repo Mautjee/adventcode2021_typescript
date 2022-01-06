@@ -1,4 +1,5 @@
-import {Point,Line} from '../models/models';
+import {Line} from '../models/Line';
+import {Point} from '../models/Point';
 import {countCollitions} from '../logic';
 import {getData} from '../getData';
 import {removeDiagonalLines} from '../partOne';

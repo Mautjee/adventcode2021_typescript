@@ -1,5 +1,5 @@
-import {Line, Point} from '../models/models'
-
+import {Line} from '../models/Line';
+import {Point} from '../models/Point';
 test('get full line points on x-axis',() => {
 	const expected:Point[] = [
 		new Point(3, 6),

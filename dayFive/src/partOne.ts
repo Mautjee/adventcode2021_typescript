@@ -1,4 +1,5 @@
-import { Line, Point } from './models/models';
+import {Line} from './models/Line';
+import {Point} from './models/Point';
 import { doesCollide } from './collide';
 import {countCollitions} from './logic';
 

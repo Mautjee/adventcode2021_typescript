@@ -1,4 +1,4 @@
-import {Point} from '../models/models';
+import {Point} from '../models/Point';
 import { doesCollide,direction} from '../collide';
 
 test('Testing if two lines overlay on same Y axis', ()=> {

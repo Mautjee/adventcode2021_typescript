@@ -1,3 +1,4 @@
-import {getData} from './getdata';
+import {getData} from './getData';
+import {partOne} from './partOne';
 
-console.log(getData("data.txt"));
+console.log("Answer of part 1 = "+ partOne(getData("dataTest.txt")));

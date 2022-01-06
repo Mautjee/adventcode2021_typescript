@@ -1,9 +1,23 @@
-import {Line} from './models';
+import { Point, Line } from './models';
+import * as fs from 'fs';
 
+export function getData(localFilePath: string): Line[] {
 
-export function getData(localFilePath: string):Line{
-	return {
-		start: [1,1],
-		end: [1,1]
-	}
+	let data = fs.readFileSync(localFilePath).toString('utf-8');
+
+	return createListOfLines(data.split("\n"));
+
+}
+
+function createListOfLines(data: string[]): Line[] {
+	let lines: Line[] = [];
+	data.forEach((n) => {
+		let [start, end] = n.split(" -> ").map(function (entry) {
+			let point = entry.split(",")
+			return new Point(parseInt(point[0]), parseInt(point[1]))
+		})
+		lines.push(new Line(start, end));
+
+	})
+	return lines;
 }

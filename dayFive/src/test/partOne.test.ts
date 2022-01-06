@@ -1,5 +1,5 @@
+import{removeDiagonalLines} from '../partOne';
 import {Point,Line} from '../models/models';
-import {partOne, removeDiagonalLines} from '../partOne';
 import {getData} from '../getData';
 
 test('Part one romove diagonal lines', ()=>{
@@ -16,15 +16,4 @@ test('Part one romove diagonal lines', ()=>{
 	const actual: Line[] = removeDiagonalLines(data);
 
 	expect(actual).toStrictEqual(expected);
-})
-
-test('Part one amount of collitions', ()=>{
-
-	const expected: number = 5;
-
-	const data = getData("dataTest.txt");
-
-	const actual:number = partOne(data);
-
-	expect(actual).toBe(expected)
 })
